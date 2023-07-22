@@ -4,7 +4,7 @@
 A global e-commerce company aims to extract insights from consumer data by leveraging advanced machine learning. They seek to enhance understanding of customer behavior, preferences, and purchasing trends, empowering data-driven decision-making and bolstering business strategies.
 
 ## Team Details
-<img width="700" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/e380f682-ccb8-49dc-9c8a-f97ab921cd01">
+<img width="800" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/6f18a277-23e8-4031-ad8f-20902da2af33">
 
 ## Problem Statemnet
 The Stride logistics industry faces challenges in optimizing operational efficiency and enhancing customer satisfaction due to limited insights derived from shipment data.
@@ -14,7 +14,7 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 * Difficulty in determining the impact of product importance on delivery time and customer ratings.
 
 ### What we are trying to solve
-<img width="700" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/5e04f1ad-9e7e-44d3-acfc-866e27f1c52a">
+<img width="892" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/f4a01d43-af31-44bc-acbc-85417d46cda6">
 
 ## Development Plan
 
@@ -37,16 +37,19 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 - The application will perform analytical and machine learning operations on the uploaded sheet.
 - Provide insights through exploratory data analysis, machine learning model results, accuracy measures, and business recommendations for current and future scenarios.
 
+
+
+
 ## Installation
 > _in_progress..._
 
-## EDA
+## Exploratory Data Analysis
 > _in_progress..._
 
 ## Feature Engineering
 > _in_progress..._
 
-## Machine Learning mode
+## Machine Learning model
 > _in_progress..._
 
 ## Recommendations
