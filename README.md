@@ -1,19 +1,24 @@
 # Optimizing Logistics Efficiency in Stride Case Study
 
 ## Introduction
-A global e-commerce company aims to extract insights from consumer data by leveraging advanced machine learning. They seek to enhance understanding of customer behavior, preferences, and purchasing trends, empowering data-driven decision-making and bolstering business strategies.
+A Stride Case Study," aims to analyze Stride Logistics' shipment data using advanced analytics tools and techniques. The project's objectives are to provide valuable insights and data-driven decision-making support, improve operational efficiency, and enhance customer satisfaction. By leveraging various data sources, including customer data, shipping data, and financial data, we will identify trends, patterns, and correlations to drive cost reduction, optimize logistics operations, and contribute to the long-term growth and success of Stride Logistics.
+
+* Analyze Stride Logistics' shipment data using advanced analytics tools.
+* Provide valuable insights and data-driven decision-making support.
+* Improve operational efficiency and reduce costs in logistics operations.
+* Enhance customer satisfaction through data-driven optimizations.
 
 ## Team Details
 <img width="800" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/6f18a277-23e8-4031-ad8f-20902da2af33">
 
-## Problem Statemnet
+## Problem Statement
 The Stride logistics industry faces challenges in optimizing operational efficiency and enhancing customer satisfaction due to limited insights derived from shipment data.
 ### Why?
 * Limited visibility into delivery time and customer rating for performance evaluation.
 * Inefficient query response management impacting customer experience.
 * Difficulty in determining the impact of product importance on delivery time and customer ratings.
 
-### What we are trying to solve
+### What we are trying to solve?
 <img width="892" alt="image" src="https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/f4a01d43-af31-44bc-acbc-85417d46cda6">
 
 ## Development Plan
@@ -37,26 +42,23 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 - The application will perform analytical and machine learning operations on the uploaded sheet.
 - Provide insights through exploratory data analysis, machine learning model results, accuracy measures, and business recommendations for current and future scenarios.
 
-
-
-
 ## Installation
-> _in_progress..._
+> _In progress..._
 
 ## Exploratory Data Analysis
-> _in_progress..._
+> _In progress..._
 
 ## Feature Engineering
-> _in_progress..._
+> _In progress..._
 
 ## Machine Learning model
-> _in_progress..._
+> _In progress..._
 
 ## Recommendations
-> _in_progress..._
+> _In progress..._
 
 ## Final result
-> _in_progress..._
+> _In progress..._
 
 ## Conclusion
-> _in_progress..._
+> _In progress..._
