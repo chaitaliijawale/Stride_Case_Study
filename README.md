@@ -43,7 +43,22 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 - Provide insights through exploratory data analysis, machine learning model results, accuracy measures, and business recommendations for current and future scenarios.
 
 ## Installation
-> _In progress..._
+Clone the github repository and navigate to the terminal (make sure thay python 3.9.* is already installed)
+```
+cd stride_app
+```
+```
+pip install -r req.txt
+```
+```
+set FLASK_APP=main:app
+```
+```
+flask run
+```
+
+## Current Working
+![Untitled design](https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/7cd0f443-67b6-46f5-b7ce-bb95bf6dd867)
 
 ## Exploratory Data Analysis
 > _In progress..._
