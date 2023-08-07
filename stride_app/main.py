@@ -32,7 +32,7 @@ def upload_csv():
             csv_file.save(file_path)
 
             # Read the CSV file and preprocess the data
-            processed_data = run_data_preprocessing(file_path)
+            processed_data = run_data_preprocessing(file_path, app.config['GRAPH_FOLDER'])
 
             return redirect(url_for('dashboard'))
 

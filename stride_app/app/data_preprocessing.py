@@ -5,13 +5,14 @@ import seaborn as sns
 import numpy as np
 from sklearn.preprocessing import StandardScaler #scaling 
 import logging
+import os
 
 def load_data(file_path):
     df = pd.read_csv(file_path)
     print('Given dataset is loaded.')
     return df
 
-def perform_feature_engineering(df):
+def perform_feature_engineering(df, graph_folder):
     mode_mapping = {'Ship': 1, 'Flight': 2, 'Road': 3}
     df['Mode_of_Shipment_encoded'] = df['Mode_of_Shipment'].map(mode_mapping)
 
@@ -69,6 +70,79 @@ def perform_feature_engineering(df):
 
     df['Delivery_Time_per_Weight'] = df['Weight_in_gms'] / df['Expected_delivery_time']
 
+    
+    print(df.head())
+    #plotting the graph
+    plt.figure(figsize=(20, 10))
+    sns.kdeplot(data=df, x='Interaction_Weight_Discount', hue='Reached.on.Time_Y.N', fill=True,  palette="Purples")
+    plt.xlabel('Interaction_Weight_Discount')
+    plt.ylabel('Density')
+    plt.title('KDE Plot of Interaction_Weight_Discount by Delivery Status')
+    plt.legend(title='Delivery Status', labels=['Late', 'On Time'])
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder, 'features/Interaction_Weight_Discount.png'))
+
+
+    plt.figure(figsize=(20, 10))
+    ax = sns.barplot(data=df, x='Customer_Satisfaction_Score', y=df.index, estimator=len, hue='Reached.on.Time_Y.N', palette='Purples')
+    plt.xlabel('Customer Satisfaction Score')
+    plt.ylabel('Count')
+    plt.title('Distribution of Customer Satisfaction Scores')
+    for p in ax.patches:
+        height = p.get_height()
+        ax.annotate(f'{height}', (p.get_x() + p.get_width() / 2, height), ha='center', va='bottom', color='black')
+    # ax.legend(title='Delivery Status', labels=['On Time', 'Late'], loc='upper right')
+    sns.move_legend(ax, "upper left")
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder,'features/Customer_Satisfaction_Score.png'))
+
+    plt.figure(figsize=(20, 10))
+    ax = sns.countplot(data=df, x='Weight_category', hue='Reached.on.Time_Y.N', palette='Purples')
+    for p in ax.patches:
+        ax.annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()), ha='center', va='bottom', fontsize=11, color='black', xytext=(0, 5), textcoords='offset points')
+
+    plt.xlabel("Weight Category")
+    plt.ylabel("Total")
+    plt.title("Package Arrival based on Weight Category", fontsize=18)
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder,'features/Weight_Category.png'))
+
+    #plotting the graph
+    plt.figure(figsize=(20, 10))
+    sns.kdeplot(data=df, x='Delivery_Time_per_Weight', fill=True, hue='Reached.on.Time_Y.N', palette='Purples')
+    plt.xlabel('Delivery Time per Weight')
+    plt.ylabel('Density')
+    plt.title('KDE Plot of Delivery Time per Weight')
+    plt.legend(title='Delivery Status', labels=['Late', 'On Time'], loc='upper right')
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder,'features/Delivery_Time_per_Weight.png'))
+
+
+    #plotting the graph
+    plt.figure(figsize=(20, 10))
+    sns.kdeplot(data=df, x='Shipping_speed', hue='Reached.on.Time_Y.N', fill=True,  palette="Purples")
+    plt.xlabel('Shipping Speed')
+    plt.ylabel('Density')
+    plt.title('KDE Plot of Shipping Speed by Delivery Status')
+    plt.legend(title='Delivery Status', labels=['Late', 'On Time'])
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder,'features/Shipping_speed.png'))
+
+
+    #plotting the graph
+    plt.figure(figsize=(20, 10))
+    ax = sns.countplot(data=df, x='Discount_category',  hue='Reached.on.Time_Y.N', palette='Purples')
+    plt.xlabel('Discount Category')
+    plt.ylabel('Count')
+    plt.title('Distribution of Products in Discount Categories')
+    for p in ax.patches:
+        height = p.get_height()
+        ax.annotate(f'{height}', (p.get_x() + p.get_width() / 2, height), ha='center', va='bottom', color='black')
+    ax.legend(title='Delivery Status', labels=['On Time', 'Late'], loc='upper right')
+    sns.move_legend(ax, "upper right")
+    plt.tight_layout()
+    plt.savefig(os.path.join(graph_folder,'features/Discount_category.png'))
+
     print("Feature Engineering is done.")
     return df
 
@@ -105,10 +179,10 @@ def perform_data_preprocessing(df):
     return df
 
 
-def run_data_preprocessing(file_path):
+def run_data_preprocessing(file_path,graph_folder):
     df = load_data(file_path)
     print("Performing Feature Engineering..")
-    fearure_df = perform_feature_engineering(df)
+    fearure_df = perform_feature_engineering(df,graph_folder)
     print("Performing Data Encoding..")
     final_encoded_df, encoded_columns = encode_categorical_columns(fearure_df)
     print("This many columns are Encoded -> :", encoded_columns)

@@ -11,15 +11,38 @@
     <div class="container mt-5">
         <h1 class="text-center">Stride Dashboard</h1>
 
+        <!-- Feature Engineering Graphs -->
         <h2 class="mt-5">Feature Engineering Graphs</h2>
-        <div class="row">
-            {% for feature in selected_features %}
-            <div class="col-md-4 mb-4">
-                <h3>{{ feature }}</h3>
-                <img class="img-fluid" src="{{ url_for('static', filename='graphs/' ~ feature.replace(' ', '') ~ '.png') }}">
+        <div class="feature-graphs-container">
+            <div class="col-md-6 mb-4">
+                <!-- <p>Interaction_Weight_Discount</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Interaction_Weight_Discount.png') }}">
             </div>
-            {% endfor %}
+            <div class="col-md-6 mb-4">
+                <!-- <p>Customer_Satisfaction_Score</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Customer_Satisfaction_Score.png') }}">
+            </div>
+            <div class="col-md-6 mb-4">
+                <!-- <p>Weight Category</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Weight_Category.png') }}">
+            </div>
+            <div class="col-md-6 mb-4">
+                <!-- <p>Delivery_Time_per_Weight</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Delivery_Time_per_Weight.png') }}">
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <!-- <p>Delivery_Time_per_Weight</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Shipping_speed.png') }}">
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <!-- <p>Delivery_Time_per_Weight</p> -->
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/features/Discount_category.png') }}">
+            </div>
+           
         </div>
+
 
         <h2 class="mt-5">Correlation Graph</h2>
         <div class="row justify-content-center">
@@ -49,28 +72,99 @@
                 </tbody>
             </table>
         </div>
-
+        <!---
         <h2 class="mt-5">Recommendations</h2>
         <p>Provide your recommendations based on the analysis and results obtained from the ML models.</p>
+        --->
 
         <h2 class="mt-5">Questions and Answers</h2>
-        <ol>
-            <li>
-                <h3>Question 1</h3>
-                <p>Provide the question here.</p>
-                <p>Answer: Provide the answer to the question here.</p>
-            </li>
-            <li>
-                <h3>Question 2</h3>
-                <p>Provide the question here.</p>
-                <p>Answer: Provide the answer to the question here.</p>
-            </li>
-            <li>
-                <h3>Question 3</h3>
-                <p>Provide the question here.</p>
-                <p>Answer: Provide the answer to the question here.</p>
-            </li>
-        </ol>
+        <select id="modelSelect" class="form-control mb-3">
+            <option value="">Select a Model</option>
+            <option value="NaiveBayes">Naive Bayes</option>
+            <option value="LogisticRegression">Logistic Regression</option>
+            <option value="K-NearestNeighbours">K-Nearest Neighbours</option>
+            <option value="SupportVectorMachine">Support Vector Machine</option>
+            <option value="DecisionTree">Decision Tree</option>
+            <option value="RandomForest">Random Forest</option>
+            <option value="XGBOOST">XGBOOST</option>
+        </select>
+        <div id="questionAnswers"></div>
     </div>
+
+    <script>
+        // Function to generate the HTML for a question and its answer
+        function generateQuestionAndAnswer(question, answer) {
+            return `
+                <li>
+                    <h3>${question}</h3>
+                    <p>${answer}</p>
+                </li>
+            `;
+        }
+
+        // Get the model select element and questionAnswers div
+        const modelSelect = document.getElementById('modelSelect');
+        const questionAnswers = document.getElementById('questionAnswers');
+
+        // Event listener for model select
+        modelSelect.addEventListener('change', function() {
+            const selectedModel = modelSelect.value;
+
+            // Replace the question and answers below with actual questions and answers for each model
+            if (selectedModel === 'NaiveBayes') {
+                // Add answers for Naive Bayes model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.2 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it tends to have the highest rating rather than being delivered on time.')}
+                `;
+            } else if (selectedModel === 'LogisticRegression') {
+                // Add answers for Logistic Regression model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.7 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it is more likely to have the highest rating rather than being delivered on time.')}
+                `;
+            } else if (selectedModel === 'K-NearestNeighbours') {
+                // Add answers for K-Nearest Neighbours model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.5 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it tends to have a higher rating and is more likely to be delivered on time.')}
+                `;
+            } else if (selectedModel === 'SupportVectorMachine') {
+                // Add answers for Support Vector Machine model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.6 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it is more likely to have a higher rating and is more likely to be delivered on time.')}
+                `;
+            } else if (selectedModel === 'DecisionTree') {
+                // Add answers for Decision Tree model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.3 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it tends to have a higher rating and is more likely to be delivered on time.')}
+                `;
+            } else if (selectedModel === 'RandomForest') {
+                // Add answers for Random Forest model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.8 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it tends to have a higher rating and is more likely to be delivered on time.')}
+                `;
+            } else if (selectedModel === 'XGBOOST') {
+                // Add answers for XGBOOST model here
+                questionAnswers.innerHTML = `
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.9 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it tends to have the highest rating rather than being delivered on time.')}
+                `;
+            } else {
+                // If none of the models are selected, clear the answers
+                questionAnswers.innerHTML = '';
+            }
+        });
+    </script>
 </body>
 </html>
