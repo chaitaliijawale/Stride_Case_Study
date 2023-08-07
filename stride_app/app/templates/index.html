@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stride Project by Group A11</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader"></div>
+        <p class="loading-text" id="loadingText">We are generating profitable insights for your business...</p>
+        <p class="thanks-text" id="thanksText" style="display: none;">Thanks for trusting Group-A11 :).</p>
+    </div>
+
+    <div class="container mt-5" id="mainContent">
+        <div class="jumbotron text-center">
+            <h1>Upload CSV File</h1>
+            <form id="csvForm" action="{{ url_for('upload_csv') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="csv_file">Select a CSV file:</label>
+                    <input type="file" class="form-control-file" name="csv_file" id="csv_file" accept=".csv" required>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="showLoader()">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the loader and hide the main content on form submission
+        function showLoader() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('loaderContainer').style.display = 'flex';
+            showLoadingText();
+        }
+
+        // Show and hide loading and thanks text messages alternately
+        function showLoadingText() {
+            document.getElementById('loadingText').style.display = 'block';
+            document.getElementById('thanksText').style.display = 'none';
+            setTimeout(function() {
+                showThanksText();
+            }, 2000);
+        }
+
+        function showThanksText() {
+            document.getElementById('loadingText').style.display = 'none';
+            document.getElementById('thanksText').style.display = 'block';
+            setTimeout(function() {
+                showLoadingText();
+            }, 2000);
+        }
+    </script>
+
+    <!-- JavaScript to hide the loader and show the main content once dashboard.html is loaded -->
+    <script>
+        window.onload = function() {
+            document.getElementById('loaderContainer').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        };
+    </script>
+</body>
+</html>

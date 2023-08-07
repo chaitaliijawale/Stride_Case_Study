@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Dashboard</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Stride Dashboard</h1>
+
+        <h2 class="mt-5">Feature Engineering Graphs</h2>
+        <div class="row">
+            {% for feature in selected_features %}
+            <div class="col-md-4 mb-4">
+                <h3>{{ feature }}</h3>
+                <img class="img-fluid" src="{{ url_for('static', filename='graphs/' ~ feature.replace(' ', '') ~ '.png') }}">
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="mt-5">Correlation Graph</h2>
+        <div class="row justify-content-center">
+            <img class="img-fluid" src="{{ url_for('static', filename='graphs/correlation_graph.png') }}">
+        </div>
+
+        <h2 class="mt-5">ML Model Dashboard</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ML Model</th>
+                        <th>Accuracy</th>
+                        <th>Confusion Matrix</th>
+                        <th>ROC Curve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for model, accuracy in accuracies.items() %}
+                    <tr>
+                        <td>{{ model }}</td>
+                        <td>{{ accuracy }}</td>
+                        <td><img class="img-fluid" src="{{ url_for('static', filename='graphs/confusion_matrix_' ~ model.replace(' ', '') ~ '.png') }}"></td>
+                        <td><img class="img-fluid" src="{{ url_for('static', filename='graphs/roc_curve_' ~ model.replace(' ', '') ~ '.png') }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-5">Recommendations</h2>
+        <p>Provide your recommendations based on the analysis and results obtained from the ML models.</p>
+
+        <h2 class="mt-5">Questions and Answers</h2>
+        <ol>
+            <li>
+                <h3>Question 1</h3>
+                <p>Provide the question here.</p>
+                <p>Answer: Provide the answer to the question here.</p>
+            </li>
+            <li>
+                <h3>Question 2</h3>
+                <p>Provide the question here.</p>
+                <p>Answer: Provide the answer to the question here.</p>
+            </li>
+            <li>
+                <h3>Question 3</h3>
+                <p>Provide the question here.</p>
+                <p>Answer: Provide the answer to the question here.</p>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
