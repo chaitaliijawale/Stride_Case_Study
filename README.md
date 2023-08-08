@@ -56,6 +56,9 @@ flask run
 ```
 
 ## Current Working
+
+This project is under construction but you can see the progress here https://stridecasestudy.pythonanywhere.com
+
 ![Untitled design](https://github.com/chaitalijawale08/Stide_Case_Study/assets/100806411/7cd0f443-67b6-46f5-b7ce-bb95bf6dd867)
 
 ## Exploratory Data Analysis
