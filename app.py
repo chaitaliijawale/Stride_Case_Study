@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
-from app.data_preprocessing import run_data_preprocessing
-from app.machine_learning import run_machine_learning, calculate_correlation
+from data_preprocessing import run_data_preprocessing
+from machine_learning import run_machine_learning, calculate_correlation
 import os
 
-app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Set the path where uploaded CSV files will be stored
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 # Set the path for graphs
-app.config['GRAPH_FOLDER'] = 'app/static/graphs'
+app.config['GRAPH_FOLDER'] = 'static/graphs'
 
 # List of classification models
 models = ['NaiveBayes', 'LogisticRegression', 'K-NearestNeighbours', 'SupportVectorMachine', 'DecisionTree', 'RandomForest', 'XGBOOST']
