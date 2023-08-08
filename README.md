@@ -51,7 +51,7 @@ cd stride_app
 pip install -r req.txt
 ```
 ```
-set FLASK_APP=main:app
+set FLASK_APP=app:app
 ```
 ```
 flask run
