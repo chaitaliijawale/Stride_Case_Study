@@ -44,9 +44,7 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 
 ## Installation
 Clone the github repository and navigate to the terminal (make sure thay python 3.9.* is already installed)
-```
-cd stride_app
-```
+
 ```
 pip install -r req.txt
 ```
