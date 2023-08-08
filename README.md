@@ -46,7 +46,7 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 Clone the github repository and navigate to the terminal (make sure thay python 3.9.* is already installed)
 
 ```
-pip install -r req.txt
+pip install -r requirements.txt
 ```
 ```
 set FLASK_APP=app:app
