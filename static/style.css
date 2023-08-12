@@ -140,3 +140,28 @@ h2 {
     transform: translateY(0);
   }
 }
+
+.qa-list li {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#recommendationText {
+  text-align: center;
+}
+
+.recommendation-box {
+  background-color: #96ffbe;
+  padding: 10px;
+  margin: 10px auto;
+  max-width: 600px;
+}
+
+.answer-box {
+  background-color: #ffe7f6 ;
+  padding: 10px;
+  max-width: auto;
+}
+
+
+

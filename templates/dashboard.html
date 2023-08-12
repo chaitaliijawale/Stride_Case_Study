@@ -88,7 +88,13 @@
             <option value="RandomForest">Random Forest</option>
             <option value="XGBOOST">XGBOOST</option>
         </select>
+        <ul id="questionAnswers" class="qa-list"></ul>  
+        
         <div id="questionAnswers"></div>
+
+        <h2 class="mt-5">Recommendations</h2>
+        <p id="recommendationText">Provide your recommendations based on the analysis and results obtained from the ML models.</p>
+
     </div>
 
     <script>
@@ -97,14 +103,20 @@
             return `
                 <li>
                     <h3>${question}</h3>
-                    <p>${answer}</p>
+                    <p class="answer-box">${answer}</p>
                 </li>
             `;
+        }
+
+        // Function to generate the HTML for recommendations
+        function generateRecommendation(recommendation) {
+            return `<p>${recommendation}</p>`;
         }
 
         // Get the model select element and questionAnswers div
         const modelSelect = document.getElementById('modelSelect');
         const questionAnswers = document.getElementById('questionAnswers');
+        const recommendationText = document.getElementById('recommendationText');
 
         // Event listener for model select
         modelSelect.addEventListener('change', function() {
@@ -165,6 +177,65 @@
                 questionAnswers.innerHTML = '';
             }
         });
+
+
+        const recommendations = {
+                NaiveBayes: [
+                    'Focus on improving product ratings for high importance products.',
+                    'Enhance customer query response times to improve outcomes.',
+                    'Analyze delivery times for high importance products to ensure on-time deliveries.'
+                ],
+                LogisticRegression: [
+                    'Prioritize timely deliveries for high importance products.',
+                    'Consider offering special promotions for high-rated products.',
+                    'Implement customer feedback system to improve overall satisfaction.'
+                ],
+                'K-NearestNeighbours': [
+                    'Optimize product recommendations based on customer preferences.',
+                    'Monitor and improve delivery times for higher customer satisfaction.',
+                    'Offer personalized discounts to high-value customers.'
+                ],
+                SupportVectorMachine: [
+                    'Maintain high product ratings for improved customer satisfaction.',
+                    'Focus on timely and reliable deliveries for customer loyalty.',
+                    'Implement real-time customer support for immediate query resolution.'
+                ],
+                DecisionTree: [
+                    'Strive for a balance between product ratings and delivery times.',
+                    'Segment customers for targeted marketing and improved engagement.',
+                    'Analyze customer feedback to identify areas for improvement.'
+                ],
+                RandomForest: [
+                    'Emphasize both high product ratings and on-time deliveries.',
+                    'Implement loyalty programs to reward repeat customers.',
+                    'Regularly update product offerings based on customer trends.'
+                ],
+                XGBOOST: [
+                    'Prioritize product ratings as a primary factor for customer satisfaction.',
+                    'Implement a tiered delivery system for different customer segments.',
+                    'Offer personalized recommendations for each customer based on preferences.'
+                ]
+            };
+             // Event listener for model select
+            modelSelect.addEventListener('change', function() {
+                const selectedModel = modelSelect.value;
+
+                // Clear the recommendation text initially
+                recommendationText.innerHTML = '';
+
+                // Populate recommendations based on the selected model
+                if (selectedModel in recommendations) {
+                    const modelRecommendations = recommendations[selectedModel];
+                    modelRecommendations.forEach((recommendation, index) => {
+                        if (index < 3) { // Display top 3 recommendations
+                            recommendationText.innerHTML += generateRecommendation(`<p class="recommendation-box">${recommendation}</p>`);
+                        }
+                    });
+                }
+            });
+
+
+        
     </script>
 </body>
 </html>
