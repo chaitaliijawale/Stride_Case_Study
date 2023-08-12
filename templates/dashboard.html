@@ -56,15 +56,17 @@
                     <tr>
                         <th>ML Model</th>
                         <th>Accuracy</th>
+                        <th>Model Status</th>
                         <th>Confusion Matrix</th>
                         <th>ROC Curve</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for model, accuracy in accuracies.items() %}
+                    {% for model, model_data in model_data.items() %}
                     <tr>
                         <td>{{ model }}</td>
-                        <td>{{ accuracy }}</td>
+                        <td>{{ model_data.accuracy }}</td>
+                        <td>{{ model_data.model_status }}</td>
                         <td><img class="img-fluid" src="{{ url_for('static', filename='graphs/confusion_matrix_' ~ model.replace(' ', '') ~ '.png') }}"></td>
                         <td><img class="img-fluid" src="{{ url_for('static', filename='graphs/roc_curve_' ~ model.replace(' ', '') ~ '.png') }}"></td>
                     </tr>
@@ -147,8 +149,8 @@
             } else if (selectedModel === 'SupportVectorMachine') {
                 // Add answers for Support Vector Machine model here
                 questionAnswers.innerHTML = `
-                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 4.6 out of 5.')}
-                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered satisfactorily.')}
+                    ${generateQuestionAndAnswer('Was the product delivered on the expected time and what was the customer rating?', 'Answer: The product was delivered on the expected time and the customer rating was 3 out of 5.')}
+                    ${generateQuestionAndAnswer('Was the customer’s query answered?', 'Answer: Yes, the customer\'s query was answered little satisfactorily.')}
                     ${generateQuestionAndAnswer('If Product importance is high, Having the highest rating or being delivered on time?', 'Answer: When product importance is high, it is more likely to have a higher rating and is more likely to be delivered on time.')}
                 `;
             } else if (selectedModel === 'DecisionTree') {

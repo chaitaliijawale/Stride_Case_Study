@@ -53,13 +53,28 @@ def dashboard():
     target = 'Reached.on.Time_Y.N'
 
     # Perform ML modeling and get model accuracies and graphs
-    accuracies = {}
-    for model_name in models:
-        accuracy = run_machine_learning(model_name, processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
-        accuracies[model_name] = accuracy
-        calculate_correlation(processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
+    # accuracies = {}
+    # for model_name in models:
+    #     accuracy,model_str = run_machine_learning(model_name, processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
+    #     accuracies[model_name] = accuracy
+    #     accuracies[model_str] = model_str
+    #     calculate_correlation(processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
 
-    return render_template('dashboard.html', accuracies=accuracies)
+    # return render_template('dashboard.html', accuracies=accuracies)
+
+
+     # Perform ML modeling and get model accuracies and graphs
+    model_data = {}
+    for model_name in models:
+        accuracy, model_str = run_machine_learning(model_name, processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
+        model_data[model_name] = {
+            'accuracy': accuracy,
+            'model_status': model_str
+        }
+        calculate_correlation(processed_data, selected_features, target, app.config['GRAPH_FOLDER'])
+    # print(model_data)
+
+    return render_template('dashboard.html', model_data=model_data)
 
 
 if __name__ == '__main__':

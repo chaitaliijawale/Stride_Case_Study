@@ -11,18 +11,22 @@
     <div class="loader-container" id="loaderContainer">
         <div class="loader"></div>
         <p class="loading-text" id="loadingText">We are generating profitable insights for your business...</p>
+        <p class="loading-text" id="dataPreprocessingText" style="display: none;">Data preprocessing phase...</p>
+        <p class="loading-text" id="machineLearningText" style="display: none;">Machine Learning Modeling...</p>
+        <p class="loading-text" id="savingResultsText" style="display: none;">Saving results...</p>
         <p class="thanks-text" id="thanksText" style="display: none;">Thanks for trusting Group-A11 :)</p>
     </div>
+    
 
     <div class="container mt-5" id="mainContent">
         <div class="jumbotron text-center">
-            <h1>Upload CSV File</h1>
+            <h1>Please upload stride data to analyze</h1>
             <form id="csvForm" action="{{ url_for('upload_csv') }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="csv_file">Select a CSV file:</label>
+                    <label for="csv_file">Select the shipment data:</label>
                     <input type="file" class="form-control-file" name="csv_file" id="csv_file" accept=".csv" required>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="showLoader()">Upload</button>
+                <button type="submit" class="btn btn-primary" onclick="showLoader()">Upload csv</button>
             </form>
         </div>
     </div>
@@ -34,24 +38,26 @@
             document.getElementById('loaderContainer').style.display = 'flex';
             showLoadingText();
         }
-
-        // Show and hide loading and thanks text messages alternately
+    
+        // Array of loading text messages
+        const loadingTexts = [
+            "We are generating profitable insights for your business...",
+            "Data preprocessing phase...",
+            "Machine Learning Modeling...",
+            "Saving results...",
+            "Thanks for trusting Group-A11 :)"
+        ];
+    
+        let currentLoadingTextIndex = 0;
+    
+        // Show loading text messages alternately
         function showLoadingText() {
-            document.getElementById('loadingText').style.display = 'block';
-            document.getElementById('thanksText').style.display = 'none';
-            setTimeout(function() {
-                showThanksText();
-            }, 2000);
-        }
-
-        function showThanksText() {
-            document.getElementById('loadingText').style.display = 'none';
-            document.getElementById('thanksText').style.display = 'block';
-            setTimeout(function() {
-                showLoadingText();
-            }, 2000);
+            document.getElementById('loadingText').textContent = loadingTexts[currentLoadingTextIndex];
+            currentLoadingTextIndex = (currentLoadingTextIndex + 1) % loadingTexts.length;
+            setTimeout(showLoadingText, 2000);
         }
     </script>
+    
 
     <!-- JavaScript to hide the loader and show the main content once dashboard.html is loaded -->
     <script>

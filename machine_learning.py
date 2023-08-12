@@ -74,6 +74,7 @@ def run_machine_learning(model_name, df, selected_features, target, graph_folder
         model = XGBClassifier()
     else:
         raise ValueError("Invalid model name. Please choose from the available models.")
+    
 
     # Split the data into training and testing sets to build the model
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -88,6 +89,15 @@ def run_machine_learning(model_name, df, selected_features, target, graph_folder
     accuracy = accuracy_score(y_test, y_pred)
     print(f'Accuracy of {model_name} model is {accuracy*100:.2f}')
 
+    print(f'Accuracy of {model_name} model is {accuracy*100:.2f}')
+    model_str = ""
+    if accuracy > 0.95:
+        model_str = "Model might be overfitting."
+    elif accuracy > 0.85:
+        model_str = "Model is likely a good fit."
+    else:
+        model_str = "Model might be underfitting." 
+
     # Generate a confusion matrix of the specific model
     cm = confusion_matrix(y_test, y_pred)
     plt.figure(figsize=(5, 4))
@@ -97,6 +107,7 @@ def run_machine_learning(model_name, df, selected_features, target, graph_folder
     plt.title(f'Confusion Matrix of {model_name}')
     plt.savefig(os.path.join(graph_folder, f'confusion_matrix_{model_name}.png'))
     plt.close()
+    
 
     # Display the classification report of the specific model
     report = classification_report(y_test, y_pred)
@@ -122,4 +133,4 @@ def run_machine_learning(model_name, df, selected_features, target, graph_folder
     print("-------------------------------------------------------------------------------------------")
     print("\n")
     accuracy_percentage = round(accuracy * 100, 2)
-    return accuracy_percentage
+    return accuracy_percentage, model_str
