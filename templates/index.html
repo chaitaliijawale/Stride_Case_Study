@@ -34,10 +34,16 @@
     <script>
         // Function to show the loader and hide the main content on form submission
         function showLoader() {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('loaderContainer').style.display = 'flex';
-            showLoadingText();
+        const csvFileInput = document.getElementById('csv_file');
+        if (csvFileInput.files.length === 0) {
+            alert("Please select a CSV file before uploading.");
+            return;
         }
+
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('loaderContainer').style.display = 'flex';
+        showLoadingText();
+    }
     
         // Array of loading text messages
         const loadingTexts = [
