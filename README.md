@@ -43,7 +43,7 @@ The Stride logistics industry faces challenges in optimizing operational efficie
 - Provide insights through exploratory data analysis, machine learning model results, accuracy measures, and business recommendations for current and future scenarios.
 
 ## Installation
-Clone the github repository and navigate to the terminal (make sure thay python 3.9.* is already installed)
+Clone the github repository and navigate to the terminal (make sure that python 3.9.* is already installed)
 
 ```
 pip install -r requirements.txt
