@@ -55,6 +55,9 @@ set FLASK_APP=app:app
 flask run
 ```
 
+## Live WebApp
+Link - https://meetvakani.wixsite.com/stride-project
+
 ## Exploratory Data Analysis
 ### Numerical Columns:
 Prior Purchases and Discount Offered columns have minor skewness.
